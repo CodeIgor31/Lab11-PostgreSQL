@@ -1,0 +1,32 @@
+<head>
+    <style>
+        tr, th, td {
+            border: 1px solid black;
+            }
+        .tab{
+            height:40%;
+            width:100%;
+            border: 1px solid black;
+            }
+    </style>
+</head>
+
+<body>
+<h3>Таблица с результатами</h3>
+Введенное диапазон: [0, <%= @number %>]
+<table class = "tab">
+    <tr>
+    <th>Число</th>
+    <th>Квадрат числа</th>
+    </tr>
+    <% @res_arr.each do |elem|%>
+    <tr>
+        <td><%= elem %></td>
+        <td><%= elem**2 %></td>
+    </tr>
+    <% end%>
+</table>
+Количество таких чисел
+<p id="counter"><%= @res_arr.size %></p>
+<%= link_to "Вернуться назад", home_path %>
+</body>
