@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root 'palindroms#index', as: 'home'
   get 'result' => 'palindroms#result'
   get 'palindroms/result'
+  get 'palindroms/check_page', as: 'check'
+  get 'palindroms/check_exists'
 end

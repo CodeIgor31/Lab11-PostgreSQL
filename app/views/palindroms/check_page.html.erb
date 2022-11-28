@@ -1,0 +1,7 @@
+<h3>Проверка на существование в базе данных:</h3> 
+<%= form_with url: "check_exists", method: :get do |form| %>
+  <p><%= form.label :query, "Введите верхнюю границу диапазона [0,n]" %></p>
+  <p><%= form.number_field(:check, {:class => 'form-control'}) %></p>
+  <p><%= form.submit "Проверить" %></p>
+  <%= link_to "Вернуться на главную страницу", home_path %>
+<% end %>
