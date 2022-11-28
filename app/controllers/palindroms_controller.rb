@@ -25,6 +25,10 @@ class PalindromsController < ApplicationController
     end
   end
 
+  def check_data_xml
+    @notes = Palindrom.all.map(&:to_xml)
+  end
+
   private
 
   def set_num
@@ -43,12 +47,12 @@ class PalindromsController < ApplicationController
   end
 
   def add_to_database(number)
-    if Palindrom.find_by(num: number).nil?
-      row = []
-      p 'CHECK'
-      row << { num: number.to_i, result: result_array(number).join(' '), count: result_array(number).size }
-      Palindrom.insert_all(row)
-      flash[:alert] = 'Данные добавлены в базу данных'
-    end
+    return unless Palindrom.find_by(num: number).nil?
+
+    row = []
+    row << { num: number.to_i, result: result_array(number).join(' '), count: result_array(number).size,
+             squares: result_array(number).map { |el| el**2 }.join(' ') }
+    Palindrom.insert_all(row)
+    flash[:alert] = 'Данные добавлены в базу данных'
   end
 end

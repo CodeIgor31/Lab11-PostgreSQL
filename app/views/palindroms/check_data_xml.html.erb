@@ -1,0 +1,9 @@
+<% k = 1 %>
+<% @notes.each do |hash| %>
+<% pal = Palindrom.new %>
+<strong><%=k%> Элемент </strong><%= pal.from_xml(hash) %><br>
+<div id='pad'><strong>Верхняя граница: </strong><%= pal.num %><br>
+<strong>Результат: </strong><%= pal.result %><br>
+<strong>Квадраты: </strong><%= pal.squares %><br></div>
+<% k += 1 %>
+<% end %>

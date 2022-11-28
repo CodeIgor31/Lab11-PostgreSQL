@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get 'palindroms/result'
   get 'palindroms/check_page', as: 'check'
   get 'palindroms/check_exists'
+  get 'palindroms/check_data_xml', as: 'xml'
 end

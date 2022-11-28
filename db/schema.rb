@@ -12,12 +12,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_128_150_155) do
+ActiveRecord::Schema[7.0].define(version: 20_221_128_192_219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
   create_table 'palindroms', primary_key: 'num', id: :integer, default: nil, force: :cascade do |t|
     t.string 'result'
+    t.string 'squares'
     t.integer 'count'
     t.index ['num'], name: 'index_palindroms_on_num', unique: true
   end
