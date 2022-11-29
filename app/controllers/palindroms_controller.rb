@@ -24,6 +24,8 @@ class PalindromsController < ApplicationController
       redirect_to check_path, error: 'Нет в базе данных'
     else
       @check_arr = @check_note[:result].split.map(&:to_i)
+      @check_sqr = @check_note[:squares].split.map(&:to_i)
+      @check_hash = Hash[@check_arr.zip @check_sqr]
     end
   end
 

@@ -6,14 +6,14 @@
     <th>Число</th>
     <th>Квадрат числа</th>
     </tr>
-    <% @check_arr.each do |elem|%>
+    <% @check_hash.each do |elem, sq|%>
     <tr>
         <td><%= elem %></td>
-        <td><%= elem**2 %></td>
+        <td><%= sq %></td>
     </tr>
     <% end %>
 </table>
 Количество таких чисел
-<p id="count"><%= @check_arr.size %></p>
+<p id="count"><%= @check_hash.size %></p>
 <%= link_to "Вернуться назад", check_path%>
 </body>
