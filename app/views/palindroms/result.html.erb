@@ -19,14 +19,14 @@
     <th>Число</th>
     <th>Квадрат числа</th>
     </tr>
-    <% @res_arr.each do |elem|%>
+    <% @hash.each do |ar,sq|%>
     <tr>
-        <td><%= elem %></td>
-        <td><%= elem**2 %></td>
+        <td><%= ar %></td>
+        <td><%= sq %></td>
     </tr>
     <% end%>
 </table>
 Количество таких чисел
-<p id="counter"><%= @res_arr.size %></p>
+<p id="counter"><%= @hash.size %></p>
 <%= link_to "Вернуться назад", home_path %>
 </body>

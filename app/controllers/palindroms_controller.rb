@@ -11,6 +11,8 @@ class PalindromsController < ApplicationController
     add_to_database(@number)
     @note = Palindrom.find_by(num: @number)
     @res_arr = @note[:result].split.map(&:to_i)
+    @squares = @note[:squares].split.map(&:to_i)
+    @hash = Hash[@res_arr.zip @squares]
   end
 
   def check_page; end
