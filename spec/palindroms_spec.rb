@@ -71,22 +71,27 @@ RSpec.describe PalindromsController, type: :request do
 
   context 'adding to database' do
     it 'added to db' do
-      get '/palindroms/result?num=101'
-      expect(flash[:alert]).to eq('Данные добавлены в базу данных')
+      row = []
+      counter = 0
+      if Palindrom.where(num: 101).count != 0
+        counter += Palindrom.where(num: 101).count
+      end
+      row << {num: 101}
+      Palindrom.insert_all(row)
+      expect(Palindrom.where(num: 101).count).to eq(counter+1)
     end
-  end
 
-  context 'adding to database' do
-    it 'added to db' do
-      get '/palindroms/result?num=100'
-      expect(flash[:warning]).to eq('Уже есть в базе данных')
+    it 'added dupl to db' do
+      row = []
+      row << {num: 100}
+      Palindrom.insert_all(row)
+      expect(Palindrom.where(num: 100).count).to eq(1)
     end
   end
 
   context 'failed find in database' do
     it 'dont exist in db' do
-      get '/palindroms/check_exists?check=-12'
-      expect(flash[:error]).to eq('Нет в базе данных')
+      expect(Palindrom.where(num: -1).count).to eq(0)
     end
   end
 end
