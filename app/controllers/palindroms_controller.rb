@@ -10,7 +10,6 @@ class PalindromsController < ApplicationController
 
   def result
     add_to_database(@number)
-    add_to_database(@number)
     @note = Palindrom.find_by(num: @number)
     @res_arr = @note[:result].split.map(&:to_i)
     @squares = @note[:squares].split.map(&:to_i)
