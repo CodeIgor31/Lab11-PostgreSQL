@@ -32,7 +32,7 @@ class PalindromsController < ApplicationController
   end
 
   def check_data_xml
-    @notes = Palindrom.all.map(&:to_xml)
+    render xml: Palindrom.all
   end
 
   private

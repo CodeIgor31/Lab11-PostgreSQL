@@ -108,11 +108,12 @@ RSpec.describe PalindromsController do
   after(:each) do
     @driver.quit
   end
+  
   it 'should give an answer' do
     @driver.get('http://localhost:3000/palindroms/check_page')
     @driver.find_element(:id, 'check').send_keys '100'
     @driver.find_element(:id, 'btn').click
-    verify { expect((@driver.find_element(:xpath, '//*[@id="count"]').text)).to eq('6') }
+    verify { expect((@driver.find_element(:id, 'count').text)).to eq('6') }
   end
 
   def verify
