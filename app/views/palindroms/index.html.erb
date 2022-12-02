@@ -2,6 +2,6 @@
 <h4>Форма</h4>
 <%= form_with url: "palindroms/result", method: :get do |form| %>
   <p><%= form.label :query, "Введите верхнюю границу диапазона [0,n]" %></p>
-  <p><%= form.number_field(:num, {:class => 'form-control'}) %></p>
-  <p><%= form.submit "Найти" %></p>
+  <p><%= form.number_field :num, :class => 'form-control', id: 'number' %></p>
+  <p><%= form.submit("Найти", id: 'find') %></p>
 <% end %>

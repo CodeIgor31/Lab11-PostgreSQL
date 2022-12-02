@@ -71,14 +71,10 @@ RSpec.describe PalindromsController, type: :request do
 
   context 'adding to database' do
     it 'added to db' do
-      row = []
-      counter = 0
-      if Palindrom.where(num: 101).count != 0
-        counter += Palindrom.where(num: 101).count
+      palindrom = Palindrom.new do |elem|
+        elem.num = 101
       end
-      row << {num: 101}
-      Palindrom.insert_all(row)
-      expect(Palindrom.where(num: 101).count).to eq(counter+1)
+      expect(palindrom.save).to eq(true)
     end
 
     it 'added dupl to db' do
@@ -91,7 +87,10 @@ RSpec.describe PalindromsController, type: :request do
 
   context 'failed find in database' do
     it 'dont exist in db' do
-      expect(Palindrom.where(num: -1).count).to eq(0)
+      palindrom = Palindrom.new do |elem|
+        elem.num = -2
+      end
+      expect(palindrom.save).to eq(false)
     end
   end
 end
@@ -110,10 +109,17 @@ RSpec.describe PalindromsController do
   end
   
   it 'should give an answer' do
+    @driver.get('http://localhost:3000')
+    @driver.find_element(:id, 'number').send_keys '100'
+    @driver.find_element(:id, 'find').click
+    verify { expect((@driver.find_element(:id, 'counter').text)).to eq('6') }
+  end
+
+  it 'should give be in database' do
     @driver.get('http://localhost:3000/palindroms/check_page')
     @driver.find_element(:id, 'check').send_keys '100'
     @driver.find_element(:id, 'btn').click
-    verify { expect((@driver.find_element(:id, 'count').text)).to eq('6') }
+    verify { expect((@driver.find_element(:id, 'msg').text)).to eq('Есть в базе данных') }
   end
 
   def verify
